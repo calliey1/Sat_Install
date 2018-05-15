@@ -16,8 +16,12 @@ vault_sat_admin_pwd: "RedHatredhat123!"
 ##  Variables used - must update per system
 new_disk: '/dev/vdb'     # set to 2nd disk
 
+# Satellite Variables
+sat_org: My_Organization
+sat_location: My_Location
+
 #################################################
-# End section that should be updated            #
+# End section that need to be updated           #
 #################################################
 
 #Standard variables
@@ -25,9 +29,6 @@ new_disk: '/dev/vdb'     # set to 2nd disk
 register_SM: true
 enable_repos: true
 
-# Satellite Variables
-sat_org: Alliey
-sat_location: Home
 
 #two variables used for skip sections for debugging
 config_lvm: true          # must be set to true in order to configure drives
