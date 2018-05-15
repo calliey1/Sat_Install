@@ -1,0 +1,6 @@
+---
+- import_tasks: register_SM.yml
+- import_tasks: update_hosts_file.yml
+- import_tasks: enable_standard_repos.yml
+- import_tasks: install_standard_packages.yml
+- import_tasks: update_system.yml

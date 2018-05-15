@@ -1,0 +1,17 @@
+---
+## Initial configuration of Satellite Server
+## Enable Standard repos
+
+- name: Install OpenSCAP on Satellite
+  command:  /usr/sbin/satellite-installer --enable-foreman-plugin-openscap
+
+- name: installing OpenSCAP content
+  yum:
+    name={{ item }}
+    state=present
+  with_items:
+    - puppet-foreman_scap_client
+    - scap-security-guide
+
+- name: foreman-rake command to setup OpenSCAP
+  command:  /usr/sbin/foreman-rake foreman_openscap:bulk_upload:default

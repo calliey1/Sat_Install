@@ -1,0 +1,9 @@
+---
+## Subscribe Sat server to RHN
+- name: register System with RHN Subscription Manager
+  redhat_subscription:
+    state: present
+    username: "{{ vault_rhn_user }}"
+    password: "{{ vault_rhn_pwd }}"
+    pool_ids: "{{ rhn_pool_name }}"
+  when: register_SM

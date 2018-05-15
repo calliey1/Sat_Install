@@ -1,0 +1,7 @@
+---
+- name: Satellite Install
+  hosts: satellite
+  become: true
+  roles:
+    - common
+    - satellite

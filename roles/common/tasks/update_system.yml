@@ -1,0 +1,6 @@
+---
+#update system to the latest available
+- name: update system
+  yum:
+    name: '*'
+    state: latest

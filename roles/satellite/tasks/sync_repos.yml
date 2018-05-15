@@ -1,0 +1,12 @@
+---
+- name: Sync all repos in the Red Hat Enterprise Linux Server product
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" product synchronize --organization "{{ sat_org }}" --async {{item}}
+  with_items:
+    - "--name 'Red Hat Enterprise Linux Server'"
+    - "--name 'Red Hat Enterprise Linux High Availability for RHEL Server'"
+    - "--name 'Red Hat Ceph Storage OSD'"
+    - "--name 'Red Hat Ceph Storage MON'"
+    - "--name 'Red Hat Ceph Storage'"
+    - "--name 'Red Hat CloudForms'"
+    - "--name 'Red Hat Enterprise Linux Fast Datapath'"
+    - "--name 'Red Hat OpenShift Container Platform'"
