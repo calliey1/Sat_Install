@@ -1,4 +1,6 @@
 ---
+- import_tasks: update_system.yml
+- import_tasks: install_standard_packages.yml
 - import_tasks: configure_volumes.yml
 - import_tasks: install_satellite_packages.yml
 - import_tasks: configure_firewall.yml

@@ -1,0 +1,16 @@
+---
+## Install basic / standard packages
+- name: installing packages
+  yum:
+    pkg={{ item }}
+    state=latest
+  with_items:
+   - system-storage-manager
+   - sg3_utils
+   - bind-utils
+   - vim
+   - openscap-scanner
+   - scap-security-guide
+   - aide
+   - python-passlib
+   - tmux
