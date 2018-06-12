@@ -1,6 +1,13 @@
 # Build Satellite server
-Ansible playbooks to configure Satellite server     
- usage:  
+
+Ansible playbooks to setup and configure Satellite 6.31   
+This playbook will perform the following steps:  
+  - Register to RHSM
+  - Install common packages and update the system
+  - Install Satellite 6.31
+  - Configure Satellite 6.31 with basic configurations
+  
+usage:  
   - ansible-playbook -i inventory.txt satellite.yml
 
 Ansible playbook to configure common systems
