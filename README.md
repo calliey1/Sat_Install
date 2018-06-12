@@ -25,6 +25,7 @@ usage:
 # Variables usage
 Variables are all located in the variable file (/group/vars/all/main.yml).  
 Some of these variables should be updated, per the environment.  
+
 Variables to be updated include:
   #RHN Variables  
 -  vault_rhn_user: "<enter your ID>"
@@ -33,7 +34,7 @@ Variables to be updated include:
 
   #Satellite Variables  
 -  vault_sat_admin_name: "sat_admin"
--  vault_sat_admin_pwd: "RedHatredhat123!"
+-  vault_sat_admin_pwd: "redhat!redhat!"
 
   #Disk Variable
--  new_disk: '/dev/vdb'
+-  new_disk: '/dev/sdb'
