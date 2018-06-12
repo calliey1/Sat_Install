@@ -1,8 +1,16 @@
 ---
 #update /etc/hosts to include hostname
 
+- name: Remove host entry for self
+  lineinfile:
+    create: yes
+    dest: /etc/hosts
+    regexp: '#SELF'
+    state: absent
+
+
 - name: Add host entry for self
   lineinfile:
     create: yes
     dest: /etc/hosts
-    line: "{{ ansible_default_ipv4.address }}      {{ansible_fqdn}}   {{ansible_hostname}}"
+    line: "{{ ansible_default_ipv4.address }}      {{ansible_fqdn}}   {{ansible_hostname}}  #SELF"

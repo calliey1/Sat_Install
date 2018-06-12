@@ -1,0 +1,14 @@
+---
+- name: Get tomorrows date
+  command:  "date +'%Y-%m-%d' -d '+1 days'"
+  register: tomorrow_date
+
+- name: Setup Daily Sync Plan
+  command: /usr/bin/hammer sync-plan create --interval=daily --name='Daily sync' --organization-id=1 --enabled true --sync-date "{{tomorrow_date.stdout}} 02:00:00"
+
+- name: Add repos to Daily Sync plan
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" product set-sync-plan --sync-plan-id=1 --organization "{{ sat_org }}" {{item}}
+  with_items:
+    - "--name 'Red Hat Enterprise Linux Server'"
+    - "--name 'Red Hat Satellite'"
+    - "--name 'Red Hat Software Collections for RHEL Server'"

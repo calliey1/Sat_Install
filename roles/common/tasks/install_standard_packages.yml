@@ -9,8 +9,27 @@
    - sg3_utils
    - bind-utils
    - vim
+   - ansible
    - openscap-scanner
    - scap-security-guide
    - aide
    - python-passlib
    - tmux
+   - rhevm-guest-agent-common
+
+- name: removing packages
+  yum:
+    pkg={{ item }}
+    state=absent
+  with_items:
+   - cloud-init
+
+- name: Start RHEV Guest Agent, if not running
+  service:
+    name: ovirt-guest-agent
+    state: started
+
+- name: Enable RHEV Guest Agent
+  service:
+    name: ovirt-guest-agent
+    enabled: yes

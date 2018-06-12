@@ -1,0 +1,6 @@
+---
+#- import_tasks: clear_host.yml
+- import_tasks: unregister_SM.yml
+  when: register_SM
+- import_tasks: register_SM.yml
+  when: register_SM

@@ -1,0 +1,9 @@
+---
+## Unregister SM
+- name: unregister to Satellite
+  command: subscription-manager unregister
+  ignore_errors: yes
+
+- name: Clean Subscription Manger
+  command: subscription-manager clean
+  ignore_errors: yes

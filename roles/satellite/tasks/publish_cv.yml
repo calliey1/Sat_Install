@@ -1,0 +1,4 @@
+---
+## Publish Content View
+- name: Publish Content View
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" content-view publish --name="{{content_view}}" --organization={{sat_org}} --async

@@ -1,0 +1,4 @@
+---
+## Create subnet
+- name: Create subnet
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" subnet create --domain-ids=1 --gateway="{{subnet_gateway}}" --mask="{{subnet_netmask}}" --name="{{subnet_name}}" --tftp-id=1 --network="{{subnet_network}}" --dns-primary={{subnet_dns}}

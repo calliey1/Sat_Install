@@ -1,0 +1,10 @@
+---
+## Promote Content View
+- name: Promote Content View to DEV
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" content-view version promote --organization={{sat_org}} --lifecycle-environment=2 --id=1 --async
+
+- name: Promote Content View to TEST
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" content-view version promote --organization={{sat_org}} --lifecycle-environment=3 --id=1 --async
+
+- name: Promote Content View to PROD
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" content-view version promote --organization={{sat_org}} --lifecycle-environment=4 --id=1 --async

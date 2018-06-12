@@ -1,0 +1,23 @@
+---
+## Clear entry in known_hosts file
+#- name: Clear entry in local known_hosts if it exists
+#  local_action:
+#    module: known_hosts
+#    name: test.list.com
+#    state: absent
+#
+#- name: Clear entry in local known_hosts if it exists
+#  known_hosts:
+#    name: 192.168.99.99
+#    state: present
+#    key: "ecdsa-sha2-nistp256 BBBBE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBVjH1AwgGWkwSDMLv9pOMb8TDc9Aa52idVQaTHXg4wktqeWBj7cIpwM/wRmv29ufkE0MKS0w+AzZD5cNANB26Y="
+#  delegate_to: 127.0.0.1
+
+- name: Clear entry in local known_hosts if it exists
+  local_action:
+    module: lineinfile
+    delegate_to: localhost
+#    create: yes
+    dest: ~/.ssh/known_hosts
+    regexp: '{{inventory_hostname}}'
+    state: absent

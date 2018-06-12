@@ -4,21 +4,30 @@
 #################################################
 #variables that should be in VAULT
 # RHN Variables
-
-vault_rhn_user: "<enter your ID>"
-vault_rhn_pwd: "<enter your password>"
-rhn_pool_name: "<your rhn_pool_name>"
+# vault_rhn_user: "<enter your ID>"
+# vault_rhn_pwd: "<enter your password>"
+# vault_rhn_pool_name: "<your rhn_pool_name>"
 
 #Satellite Variables
-vault_sat_admin_name: "sat_admin"
-vault_sat_admin_pwd: "redhat!redhat!"
+#vault_sat_admin_name: "sat_admin"
+#vault_sat_admin_pwd: "homesat123!"
 
 ##  Variables used - must update per system
 new_disk: '/dev/vdb'     # set to 2nd disk
+#new_disk: '/dev/sdb'     # set to 2nd disk
 
 # Satellite Variables
 sat_org: My_Organization
 sat_location: My_Location
+activationkey: My_activation
+sat_domain: alliey.local
+subnet_gateway: 192.168.1.1
+subnet_netmask: 255.255.254.0
+subnet_name: "192.168.0.0/23"
+subnet_network:  192.168.0.0
+subnet_dns: 192.168.1.50
+content_view: "Original_ContentView"
+
 
 #################################################
 # End section that need to be updated           #

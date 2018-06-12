@@ -1,0 +1,8 @@
+---
+## Create Content View
+#- name: Create Content View
+#  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" content-view create --name="{{content_view}}" --organization={{sat_org}}
+
+- name: Add repos to Content View
+  shell: >
+    "for i in $(hammer --csv repository list --organization={{sat_org}} | awk -F, {'print $1'} | grep -vi '^ID'); do hammer content-view add-repository --name={{content_view}} --organization={{sat_org}} --repository-id=${i}; done"

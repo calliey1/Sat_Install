@@ -5,5 +5,4 @@
     state: present
     username: "{{ vault_rhn_user }}"
     password: "{{ vault_rhn_pwd }}"
-    pool_ids: "{{ rhn_pool_name }}"
-  when: register_SM
+    pool_ids: "{{ vault_rhn_pool_name }}"

@@ -1,0 +1,10 @@
+---
+## Create Domain
+- name: Create DEV Lifecycle
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" lifecycle-environment create --name='DEV' --prior='Library' --organization-id=1
+
+- name: Create TEST Lifecycle
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" lifecycle-environment create --name='TEST' --prior='DEV' --organization-id=1
+
+- name: Create PROD Lifecycle
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" lifecycle-environment create --name='PROD' --prior='TEST' --organization-id=1

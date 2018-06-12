@@ -2,17 +2,24 @@
 - name: Satellite Select Repositories to be synced
   command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" repository-set enable --organization "{{ sat_org }}" {{item}}
   with_items:
+# Base Repos required for Offline Satellite
     - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server (RPMs)'"
     - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server - Optional (RPMs)'"
     - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - Extras (RPMs)'"
+    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7.4' --name 'Red Hat Enterprise Linux 7 Server (Kickstart)'"
     - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Satellite Tools 6.3 (for RHEL 7 Server) (RPMs)'"
+    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Satellite Maintenance 6 (for RHEL 7 Server) (RPMs)'"
+    - "--product 'Red Hat Satellite' --basearch='x86_64' --name 'Red Hat Satellite 6.3 (for RHEL 7 Server) (RPMs)'"
+    - "--product 'Red Hat Software Collections for RHEL Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server'"
+# End Base Repos required for Offline Satellite
     - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - RH Common (RPMs)' --releasever='7Server'"
-    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat OpenStack Platform 10 Tools for RHEL 7 Server (RPMs)' --releasever='7Server'"
-    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat OpenStack Platform 12 Tools for RHEL 7 Server (RPMs)'"
-    - "--product 'Red Hat Enterprise Linux High Availability for RHEL Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux High Availability (for RHEL 7 Server) (RPMs)' --releasever='7Server'"
-    - "--product 'Red Hat Ceph Storage OSD' --basearch='x86_64' --name 'Red Hat Ceph Storage OSD 3 for Red Hat Enterprise Linux 7 Server (RPMs)'"
-    - "--product 'Red Hat Ceph Storage MON' --basearch='x86_64' --name 'Red Hat Ceph Storage MON 3 for Red Hat Enterprise Linux 7 Server (RPMs)'"
-    - "--product 'Red Hat Ceph Storage' --basearch='x86_64' --name 'Red Hat Ceph Storage Tools 3 for Red Hat Enterprise Linux 7 Server (RPMs)'"
-    - "--product 'Red Hat CloudForms' --basearch='x86_64' --name 'Red Hat CloudForms Management Engine 5.9 (RPMs)'"
-    - "--product 'Red Hat Enterprise Linux Fast Datapath' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux Fast Datapath (RHEL 7 Server) (RPMs)'"
-    - "--product 'Red Hat OpenShift Container Platform' --basearch='x86_64' --name 'Red Hat OpenShift Container Platform 3.7 (RPMs)'"
+
+#    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat OpenStack Platform 10 Tools for RHEL 7 Server (RPMs)' --releasever='7Server'"
+#    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat OpenStack Platform 12 Tools for RHEL 7 Server (RPMs)'"
+#    - "--product 'Red Hat Enterprise Linux High Availability for RHEL Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux High Availability (for RHEL 7 Server) (RPMs)' --releasever='7Server'"
+#    - "--product 'Red Hat Ceph Storage OSD' --basearch='x86_64' --name 'Red Hat Ceph Storage OSD 3 for Red Hat Enterprise Linux 7 Server (RPMs)'"
+#    - "--product 'Red Hat Ceph Storage MON' --basearch='x86_64' --name 'Red Hat Ceph Storage MON 3 for Red Hat Enterprise Linux 7 Server (RPMs)'"
+#    - "--product 'Red Hat Ceph Storage' --basearch='x86_64' --name 'Red Hat Ceph Storage Tools 3 for Red Hat Enterprise Linux 7 Server (RPMs)'"
+#    - "--product 'Red Hat CloudForms' --basearch='x86_64' --name 'Red Hat CloudForms Management Engine 5.9 (RPMs)'"
+#    - "--product 'Red Hat Enterprise Linux Fast Datapath' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux Fast Datapath (RHEL 7 Server) (RPMs)'"
+#    - "--product 'Red Hat OpenShift Container Platform' --basearch='x86_64' --name 'Red Hat OpenShift Container Platform 3.7 (RPMs)'"

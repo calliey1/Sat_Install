@@ -2,6 +2,8 @@
 - name: Satellite Install
   hosts: satellite
   become: true
+  gather_facts: yes
   roles:
+    - SM_to_RH
     - common
     - satellite

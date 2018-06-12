@@ -1,0 +1,4 @@
+---
+## Create Domain
+- name: Create Domain
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" domain create --name="{{sat_domain}}"

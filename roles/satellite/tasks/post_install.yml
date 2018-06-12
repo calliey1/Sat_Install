@@ -1,0 +1,17 @@
+---
+## Install basic / standard packages
+- name: installing packages
+  yum:
+    pkg={{ item }}
+    state=latest
+  with_items:
+    - puppet-foreman_scap_client
+    - scap-security-guide
+
+- name: Run Satellite Capsule Installer for initial configuration
+  command:  >
+    satellite-installer --enable-foreman-plugin-openscap
+
+- name: Run Satellite Capsule Installer for initial configuration
+  command:  >
+    foreman-rake foreman_openscap:bulk_upload:default

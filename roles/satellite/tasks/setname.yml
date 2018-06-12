@@ -1,4 +1,0 @@
----
-- name: change hostname to myserver
-  hostname:
-    name: "{{ sat_server }}"

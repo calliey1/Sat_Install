@@ -1,0 +1,9 @@
+---
+- name: Setup Activation Key
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" activation-key create --name="rhel-7-server-{{item}}" --organization="{{sat_org}}" --lifecycle-environment="{{item}}"
+  with_items:
+    - "DEV"
+    - "TEST"
+    - "PROD"
+
+#--content-view="{{content_view}}"
