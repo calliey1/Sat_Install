@@ -11,7 +11,7 @@ rhn_pool_name: "<your rhn_pool_name>"
 
 #Satellite Variables
 vault_sat_admin_name: "sat_admin"
-vault_sat_admin_pwd: "RedHatredhat123!"
+vault_sat_admin_pwd: "redhat!redhat!"
 
 ##  Variables used - must update per system
 new_disk: '/dev/vdb'     # set to 2nd disk
