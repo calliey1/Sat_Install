@@ -5,7 +5,7 @@ Ansible playbooks to configure Satellite server
 
 Ansible playbook to configure common systems
 usage:  
- - ansible-playbook -i inventory.txt satellite.yml
+ - ansible-playbook -i inventory.txt common.yml
 
 # Key files:  
   inventory.txt - inventory file group list   
