@@ -1,0 +1,320 @@
+[myhost Sat_Install]$ ansible-playbook -i inventory.txt satellite.yml 
+
+PLAY [Satellite Install] ***********************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************
+Thursday 14 June 2018  00:21:37 -0400 (0:00:00.097)       0:00:00.097 ********* 
+ok: [192.168.122.147]
+
+TASK [SM_to_RH : unregister to Satellite] ******************************************************************************************************************************************************
+Thursday 14 June 2018  00:21:38 -0400 (0:00:01.340)       0:00:01.437 ********* 
+fatal: [192.168.122.147]: FAILED! => {"changed": true, "cmd": ["subscription-manager", "unregister"], "delta": "0:00:00.340830", "end": "2018-06-14 00:21:39.096988", "msg": "non-zero return code", "rc": 1, "start": "2018-06-14 00:21:38.756158", "stderr": "This system is currently not registered.", "stderr_lines": ["This system is currently not registered."], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [SM_to_RH : Clean Subscription Manger] ****************************************************************************************************************************************************
+Thursday 14 June 2018  00:21:39 -0400 (0:00:00.739)       0:00:02.177 ********* 
+changed: [192.168.122.147]
+
+TASK [SM_to_RH : register System with RHN Subscription Manager] ********************************************************************************************************************************
+Thursday 14 June 2018  00:21:39 -0400 (0:00:00.522)       0:00:02.699 ********* 
+changed: [192.168.122.147]
+
+TASK [common : Remove host entry for self] *****************************************************************************************************************************************************
+Thursday 14 June 2018  00:21:58 -0400 (0:00:19.139)       0:00:21.839 ********* 
+ok: [192.168.122.147]
+
+TASK [common : Add host entry for self] ********************************************************************************************************************************************************
+Thursday 14 June 2018  00:21:59 -0400 (0:00:00.389)       0:00:22.229 ********* 
+changed: [192.168.122.147]
+
+TASK [common : enable Repos] *******************************************************************************************************************************************************************
+Thursday 14 June 2018  00:21:59 -0400 (0:00:00.298)       0:00:22.527 ********* 
+changed: [192.168.122.147] => (item=rhel-7-server-extras-rpms)
+changed: [192.168.122.147] => (item=rhel-7-server-optional-rpms)
+changed: [192.168.122.147] => (item=rhel-7-server-rh-common-rpms)
+
+TASK [common : installing packages] ************************************************************************************************************************************************************
+Thursday 14 June 2018  00:22:30 -0400 (0:00:30.655)       0:00:53.183 ********* 
+changed: [192.168.122.147] => (item=[u'system-storage-manager', u'sg3_utils', u'bind-utils', u'vim', u'ansible', u'openscap-scanner', u'scap-security-guide', u'aide', u'python-passlib', u'tmux', u'rhevm-guest-agent-common'])
+
+TASK [common : removing packages] **************************************************************************************************************************************************************
+Thursday 14 June 2018  00:24:49 -0400 (0:02:19.708)       0:03:12.892 ********* 
+ok: [192.168.122.147] => (item=[u'cloud-init'])
+
+TASK [common : Start RHEV Guest Agent, if not running] *****************************************************************************************************************************************
+Thursday 14 June 2018  00:24:53 -0400 (0:00:03.350)       0:03:16.242 ********* 
+changed: [192.168.122.147]
+
+TASK [common : Enable RHEV Guest Agent] ********************************************************************************************************************************************************
+Thursday 14 June 2018  00:24:53 -0400 (0:00:00.462)       0:03:16.705 ********* 
+ok: [192.168.122.147]
+
+TASK [common : update system] ******************************************************************************************************************************************************************
+Thursday 14 June 2018  00:24:54 -0400 (0:00:00.352)       0:03:17.057 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : update system] ***************************************************************************************************************************************************************
+Thursday 14 June 2018  00:26:46 -0400 (0:01:52.717)       0:05:09.775 ********* 
+ok: [192.168.122.147]
+
+TASK [satellite : installing packages] *********************************************************************************************************************************************************
+Thursday 14 June 2018  00:26:53 -0400 (0:00:06.475)       0:05:16.250 ********* 
+ok: [192.168.122.147] => (item=[u'system-storage-manager', u'sg3_utils', u'bind-utils', u'vim', u'openscap-scanner', u'scap-security-guide', u'aide', u'python-passlib', u'tmux'])
+
+TASK [satellite : rescanning for new disks] ****************************************************************************************************************************************************
+Thursday 14 June 2018  00:27:34 -0400 (0:00:41.210)       0:05:57.460 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating new LVM volume group] ***********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:34 -0400 (0:00:00.343)       0:05:57.804 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating cache_lv logical volume] ********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:35 -0400 (0:00:00.508)       0:05:58.313 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating mongodb_lv logical volume] ******************************************************************************************************************************************
+Thursday 14 June 2018  00:27:35 -0400 (0:00:00.488)       0:05:58.801 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating pgsql_lv logical volume] ********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:36 -0400 (0:00:00.382)       0:05:59.184 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating pulp_lv logical volume] *********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:36 -0400 (0:00:00.370)       0:05:59.555 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating filesystem on cache_lv] *********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:36 -0400 (0:00:00.382)       0:05:59.937 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating filesystem on pulp_lv] **********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:38 -0400 (0:00:01.544)       0:06:01.481 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating filesystem on mongodb_lv] *******************************************************************************************************************************************
+Thursday 14 June 2018  00:27:38 -0400 (0:00:00.361)       0:06:01.843 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : creating filesystem on pgsql_lv] *********************************************************************************************************************************************
+Thursday 14 June 2018  00:27:39 -0400 (0:00:00.411)       0:06:02.254 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : mount pulp_cache] ************************************************************************************************************************************************************
+Thursday 14 June 2018  00:27:40 -0400 (0:00:01.454)       0:06:03.708 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : mount pulp] ******************************************************************************************************************************************************************
+Thursday 14 June 2018  00:27:41 -0400 (0:00:00.455)       0:06:04.163 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : mount mongodb] ***************************************************************************************************************************************************************
+Thursday 14 June 2018  00:27:41 -0400 (0:00:00.349)       0:06:04.513 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : mount pgsql] *****************************************************************************************************************************************************************
+Thursday 14 June 2018  00:27:41 -0400 (0:00:00.352)       0:06:04.866 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : installing satellite] ********************************************************************************************************************************************************
+Thursday 14 June 2018  00:27:42 -0400 (0:00:00.353)       0:06:05.219 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : SATELLITE | firewall | Enable service in firewall] ***************************************************************************************************************************
+Thursday 14 June 2018  00:34:20 -0400 (0:06:38.576)       0:12:43.795 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Bounce firewalld] ************************************************************************************************************************************************************
+Thursday 14 June 2018  00:34:21 -0400 (0:00:00.685)       0:12:44.481 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : enable Repos] ****************************************************************************************************************************************************************
+Thursday 14 June 2018  00:34:22 -0400 (0:00:01.471)       0:12:45.953 ********* 
+changed: [192.168.122.147] => (item=rhel-7-server-rpms)
+changed: [192.168.122.147] => (item=rhel-7-server-satellite-6.3-rpms)
+changed: [192.168.122.147] => (item=rhel-server-rhscl-7-rpms)
+
+TASK [satellite : Initial configuration of Satellite] ******************************************************************************************************************************************
+Thursday 14 June 2018  00:34:52 -0400 (0:00:29.977)       0:13:15.930 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : SATELLITE | upload_manifest | Copy manifest file to Satellite server] ********************************************************************************************************
+Thursday 14 June 2018  00:45:22 -0400 (0:10:29.325)       0:23:45.256 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : SATELLITE | upload_manifest | Upload manifest to Satellite server] ***********************************************************************************************************
+Thursday 14 June 2018  00:45:23 -0400 (0:00:00.944)       0:23:46.201 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : SATELLITE | Set Default sync policy to "immediate"] **************************************************************************************************************************
+Thursday 14 June 2018  00:46:31 -0400 (0:01:08.195)       0:24:54.396 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Install OpenSCAP on Satellite] ***********************************************************************************************************************************************
+Thursday 14 June 2018  00:46:32 -0400 (0:00:01.332)       0:24:55.729 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : installing OpenSCAP content] *************************************************************************************************************************************************
+Thursday 14 June 2018  00:47:56 -0400 (0:01:23.734)       0:26:19.463 ********* 
+ok: [192.168.122.147] => (item=[u'puppet-foreman_scap_client', u'scap-security-guide'])
+
+TASK [satellite : foreman-rake command to setup OpenSCAP] **************************************************************************************************************************************
+Thursday 14 June 2018  00:48:02 -0400 (0:00:06.391)       0:26:25.854 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Satellite Select Repositories to be synced] **********************************************************************************************************************************
+Thursday 14 June 2018  00:48:30 -0400 (0:00:28.036)       0:26:53.891 ********* 
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server (RPMs)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Enterprise Linux 7 Server - Optional (RPMs)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - Extras (RPMs)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --releasever='7.4' --name 'Red Hat Enterprise Linux 7 Server (Kickstart)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Satellite Tools 6.3 (for RHEL 7 Server) (RPMs)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Satellite Maintenance 6 (for RHEL 7 Server) (RPMs)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Satellite' --basearch='x86_64' --name 'Red Hat Satellite 6.3 (for RHEL 7 Server) (RPMs)')
+changed: [192.168.122.147] => (item=--product 'Red Hat Software Collections for RHEL Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server')
+changed: [192.168.122.147] => (item=--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - RH Common (RPMs)' --releasever='7Server')
+
+TASK [satellite : List Content Views | JSON] ***************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:06 -0400 (0:00:35.147)       0:27:29.039 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Set fact Content Views | JSON] ***********************************************************************************************************************************************
+Thursday 14 June 2018  00:49:07 -0400 (0:00:01.519)       0:27:30.559 ********* 
+ok: [192.168.122.147]
+
+TASK [satellite : List Content Views | JSON] ***************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:07 -0400 (0:00:00.091)       0:27:30.650 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Set fact Lifecycle Environments | JSON] **************************************************************************************************************************************
+Thursday 14 June 2018  00:49:09 -0400 (0:00:01.384)       0:27:32.036 ********* 
+ok: [192.168.122.147]
+
+TASK [satellite : List Repositories | JSON] ****************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:09 -0400 (0:00:00.107)       0:27:32.143 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Set fact Repository list | JSON] *********************************************************************************************************************************************
+Thursday 14 June 2018  00:49:10 -0400 (0:00:01.401)       0:27:33.545 ********* 
+ok: [192.168.122.147]
+
+TASK [satellite : Sync all repos in the Red Hat Enterprise Linux Server product] ***************************************************************************************************************
+Thursday 14 June 2018  00:49:10 -0400 (0:00:00.068)       0:27:33.613 ********* 
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/extras/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 3, u'Name': u'Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7.4/x86_64/kickstart', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 4, u'Name': u'Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.4'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 2, u'Name': u'Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rh-common/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 9, u'Name': u'Red Hat Enterprise Linux 7 Server - RH Common RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 1, u'Name': u'Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/satellite/6.3/os', u'Content Type': u'yum', u'Product': u'Red Hat Satellite', u'Id': 7, u'Name': u'Red Hat Satellite 6.3 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-maintenance/6/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 6, u'Name': u'Red Hat Satellite Maintenance 6 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-tools/6.3/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 5, u'Name': u'Red Hat Satellite Tools 6.3 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscl/1/os', u'Content Type': u'yum', u'Product': u'Red Hat Software Collections for RHEL Server', u'Id': 8, u'Name': u'Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server'})
+
+TASK [satellite : Create subnet] ***************************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:25 -0400 (0:00:14.673)       0:27:48.287 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Create DEV Lifecycle] ********************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:26 -0400 (0:00:01.712)       0:27:49.999 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Create TEST Lifecycle] *******************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:28 -0400 (0:00:01.748)       0:27:51.748 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Create PROD Lifecycle] *******************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:30 -0400 (0:00:01.754)       0:27:53.503 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Get tomorrows date] **********************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:32 -0400 (0:00:01.848)       0:27:55.351 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Setup Daily Sync Plan] *******************************************************************************************************************************************************
+Thursday 14 June 2018  00:49:32 -0400 (0:00:00.331)       0:27:55.683 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Add all repos to Daily Sync plan] ********************************************************************************************************************************************
+Thursday 14 June 2018  00:49:34 -0400 (0:00:01.691)       0:27:57.375 ********* 
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/extras/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 3, u'Name': u'Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7.4/x86_64/kickstart', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 4, u'Name': u'Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.4'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 2, u'Name': u'Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rh-common/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 9, u'Name': u'Red Hat Enterprise Linux 7 Server - RH Common RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 1, u'Name': u'Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/satellite/6.3/os', u'Content Type': u'yum', u'Product': u'Red Hat Satellite', u'Id': 7, u'Name': u'Red Hat Satellite 6.3 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-maintenance/6/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 6, u'Name': u'Red Hat Satellite Maintenance 6 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-tools/6.3/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 5, u'Name': u'Red Hat Satellite Tools 6.3 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscl/1/os', u'Content Type': u'yum', u'Product': u'Red Hat Software Collections for RHEL Server', u'Id': 8, u'Name': u'Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server'})
+
+TASK [satellite : Create Content View] *********************************************************************************************************************************************************
+Thursday 14 June 2018  00:50:26 -0400 (0:00:52.310)       0:28:49.686 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Add Repos to the Content View] ***********************************************************************************************************************************************
+Thursday 14 June 2018  00:50:31 -0400 (0:00:04.617)       0:28:54.303 ********* 
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/extras/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 3, u'Name': u'Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7.4/x86_64/kickstart', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 4, u'Name': u'Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.4'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 2, u'Name': u'Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rh-common/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 9, u'Name': u'Red Hat Enterprise Linux 7 Server - RH Common RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 1, u'Name': u'Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/satellite/6.3/os', u'Content Type': u'yum', u'Product': u'Red Hat Satellite', u'Id': 7, u'Name': u'Red Hat Satellite 6.3 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-maintenance/6/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 6, u'Name': u'Red Hat Satellite Maintenance 6 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-tools/6.3/os', u'Content Type': u'yum', u'Product': u'Red Hat Enterprise Linux Server', u'Id': 5, u'Name': u'Red Hat Satellite Tools 6.3 for RHEL 7 Server RPMs x86_64'})
+changed: [192.168.122.147] => (item={u'URL': u'https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscl/1/os', u'Content Type': u'yum', u'Product': u'Red Hat Software Collections for RHEL Server', u'Id': 8, u'Name': u'Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server'})
+
+TASK [satellite : Publish Content View] ********************************************************************************************************************************************************
+Thursday 14 June 2018  00:51:23 -0400 (0:00:51.735)       0:29:46.038 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Create Host Collection] ******************************************************************************************************************************************************
+Thursday 14 June 2018  00:51:34 -0400 (0:00:11.067)       0:29:57.106 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Setup Activation Key] ********************************************************************************************************************************************************
+Thursday 14 June 2018  00:51:36 -0400 (0:00:02.865)       0:29:59.971 ********* 
+changed: [192.168.122.147] => (item=DEV)
+changed: [192.168.122.147] => (item=TEST)
+changed: [192.168.122.147] => (item=PROD)
+
+TASK [satellite : List Activation Keys | JSON] *************************************************************************************************************************************************
+Thursday 14 June 2018  00:51:45 -0400 (0:00:08.404)       0:30:08.375 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Set fact Activation-keys | JSON] *********************************************************************************************************************************************
+Thursday 14 June 2018  00:51:46 -0400 (0:00:01.448)       0:30:09.824 ********* 
+ok: [192.168.122.147]
+
+TASK [satellite : List Subscriptions  | JSON] **************************************************************************************************************************************************
+Thursday 14 June 2018  00:51:46 -0400 (0:00:00.088)       0:30:09.912 ********* 
+changed: [192.168.122.147]
+
+TASK [satellite : Set fact Subscription List | JSON] *******************************************************************************************************************************************
+Thursday 14 June 2018  00:51:48 -0400 (0:00:01.741)       0:30:11.653 ********* 
+ok: [192.168.122.147]
+
+TASK [satellite : Add All Subscriptions to the Activation Key] *********************************************************************************************************************************
+Thursday 14 June 2018  00:51:48 -0400 (0:00:00.086)       0:30:11.740 ********* 
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-DEV', u'Host Limit': u'0 of Unlimited', u'ID': 1, u'Lifecycle Environment': u'DEV'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9cf6872579', u'Support': u'Self-Support', u'Contract': 11462237, u'ID': 1, u'Name': u'Red Hat Satellite Employee Subscription', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-DEV', u'Host Limit': u'0 of Unlimited', u'ID': 1, u'Lifecycle Environment': u'DEV'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9d0e02257d', u'Support': u'Self-Support', u'Contract': 10169796, u'ID': 2, u'Name': u'Employee SKU', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-DEV', u'Host Limit': u'0 of Unlimited', u'ID': 1, u'Lifecycle Environment': u'DEV'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9d22ef25c0', u'Support': u'Self-Support', u'Contract': 11462237, u'ID': 4, u'Name': u'Employee SKU', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-PROD', u'Host Limit': u'0 of Unlimited', u'ID': 3, u'Lifecycle Environment': u'PROD'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9cf6872579', u'Support': u'Self-Support', u'Contract': 11462237, u'ID': 1, u'Name': u'Red Hat Satellite Employee Subscription', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-PROD', u'Host Limit': u'0 of Unlimited', u'ID': 3, u'Lifecycle Environment': u'PROD'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9d0e02257d', u'Support': u'Self-Support', u'Contract': 10169796, u'ID': 2, u'Name': u'Employee SKU', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-PROD', u'Host Limit': u'0 of Unlimited', u'ID': 3, u'Lifecycle Environment': u'PROD'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9d22ef25c0', u'Support': u'Self-Support', u'Contract': 11462237, u'ID': 4, u'Name': u'Employee SKU', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-TEST', u'Host Limit': u'0 of Unlimited', u'ID': 2, u'Lifecycle Environment': u'TEST'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9cf6872579', u'Support': u'Self-Support', u'Contract': 11462237, u'ID': 1, u'Name': u'Red Hat Satellite Employee Subscription', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-TEST', u'Host Limit': u'0 of Unlimited', u'ID': 2, u'Lifecycle Environment': u'TEST'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9d0e02257d', u'Support': u'Self-Support', u'Contract': 10169796, u'ID': 2, u'Name': u'Employee SKU', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+changed: [192.168.122.147] => (item=[{u'Content View': None, u'Name': u'My_activation-TEST', u'Host Limit': u'0 of Unlimited', u'ID': 2, u'Lifecycle Environment': u'TEST'}, {u'End Date': u'2022-01-01 04:59:59 UTC', u'Account': 901532, u'UUID': u'4028fa1363fc965c0163fc9d22ef25c0', u'Support': u'Self-Support', u'Contract': 11462237, u'ID': 4, u'Name': u'Employee SKU', u'Type': u'Physical', u'Consumed': 0, u'Quantity': 20}])
+
+PLAY RECAP *************************************************************************************************************************************************************************************
+192.168.122.147            : ok=64   changed=52   unreachable=0    failed=0   
+
+Thursday 14 June 2018  00:52:05 -0400 (0:00:16.365)       0:30:28.106 ********* 
+=============================================================================== 
+satellite ------------------------------------------------------------ 1518.33s
+common ---------------------------------------------------------------- 287.94s
+SM_to_RH --------------------------------------------------------------- 20.40s
+setup ------------------------------------------------------------------- 1.34s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+total ---------------------------------------------------------------- 1828.01s
+Playbook run took 0 days, 0 hours, 30 minutes, 28 seconds
+

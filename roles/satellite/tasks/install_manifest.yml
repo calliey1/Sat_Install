@@ -1,5 +1,5 @@
 ---
-- name: SATELLITE | upload_manifest | Copy mainfiest file to Satellite server
+- name: SATELLITE | upload_manifest | Copy manifest file to Satellite server
   copy:
     src: "satellite_manifest.zip"
     dest: /root/satellite_manifest.zip

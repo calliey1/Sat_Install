@@ -1,0 +1,9 @@
+---
+## Satellite Subscription List
+- name: List Subscriptions  | JSON
+  command:  hammer --output json --interactive false subscription list --organization-id=1
+  register: subscription_list
+
+- name: Set fact Subscription List | JSON
+  set_fact:
+    JSON_Subscriptions="{{subscription_list.stdout | from_json}}"

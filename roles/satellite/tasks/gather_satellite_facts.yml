@@ -1,0 +1,25 @@
+---
+## Satellite Fact Collections
+- name: List Content Views | JSON
+  command:  hammer --output json --interactive false repository list --organization-id=1
+  register: content_view_list
+
+- name: Set fact Content Views | JSON
+  set_fact:
+    JSON_ContentViews="{{content_view_list.stdout | from_json}}"
+
+- name: List Content Views | JSON
+  command:  hammer --output json lifecycle-environment list
+  register: lifecycle_environment_list
+
+- name: Set fact Lifecycle Environments | JSON
+  set_fact:
+    JSON_lifecycle_environments="{{lifecycle_environment_list.stdout | from_json}}"
+
+- name: List Repositories | JSON
+  command:  hammer --output json repository list
+  register: repository_list
+
+- name: Set fact Repository list | JSON
+  set_fact:
+    JSON_repository_list="{{repository_list.stdout | from_json}}"

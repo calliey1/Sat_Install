@@ -1,0 +1,7 @@
+---
+- name: Setup Activation Key
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" activation-key create --name="{{activationkey}}-{{item}}" --organization="{{sat_org}}" --lifecycle-environment="{{item}}"
+  with_items:
+    - "DEV"
+    - "TEST"
+    - "PROD"

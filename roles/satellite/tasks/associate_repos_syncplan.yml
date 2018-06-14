@@ -1,0 +1,6 @@
+---
+
+- name: Add all repos to Daily Sync plan
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" product set-sync-plan --sync-plan-id=1 --organization "{{ sat_org }}" --id="{{item.Id}}"
+  with_items:
+    - "{{JSON_repository_list}}"

@@ -1,0 +1,9 @@
+---
+## Satellite Fact Collections
+- name: List Activation Keys | JSON
+  command:  hammer --output json --interactive false activation-key list --organization-id=1
+  register: activation_key_list
+
+- name: Set fact Activation-keys | JSON
+  set_fact:
+    JSON_Activation_keys="{{activation_key_list.stdout | from_json}}"

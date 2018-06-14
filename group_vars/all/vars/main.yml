@@ -27,7 +27,7 @@ subnet_name: "192.168.0.0/23"
 subnet_network:  192.168.0.0
 subnet_dns: 192.168.1.50
 content_view: "Original_ContentView"
-
+host_collection_name: "RHEL_7_Hosts"
 
 #################################################
 # End section that need to be updated           #

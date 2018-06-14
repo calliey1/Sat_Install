@@ -1,9 +1,7 @@
 ---
-## Install common configuration items (SM, Patches, software)
-- name: common configurations
+- name: Common Installs
   hosts: common
   become: true
-  remote_user: cloud-user
-  gather_facts: no
   roles:
+    - SM_to_RH
     - common

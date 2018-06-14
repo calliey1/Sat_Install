@@ -1,0 +1,5 @@
+---
+## Create Host Collection
+- name: Create Host Collection
+  command: /usr/bin/hammer --password "{{ vault_sat_admin_pwd }}" host-collection create --name="{{host_collection_name}}" --organization={{sat_org}}
+  ignore_errors: yes
