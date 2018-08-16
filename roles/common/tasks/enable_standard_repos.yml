@@ -1,9 +1,12 @@
 ---
 ## Enable Standard repos
+- name: disable all Repos
+  command: subscription-manager repos --disable "*"
+
 - name: enable Repos
   command: subscription-manager repos --enable {{ item }}
   with_items:
    - rhel-7-server-extras-rpms
    - rhel-7-server-optional-rpms
    - rhel-7-server-rh-common-rpms
-  when: enable_repos
+   - rhel-7-server-rpms

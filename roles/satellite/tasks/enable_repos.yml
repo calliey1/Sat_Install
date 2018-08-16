@@ -12,8 +12,9 @@
     - "--product 'Red Hat Satellite' --basearch='x86_64' --name 'Red Hat Satellite 6.3 (for RHEL 7 Server) (RPMs)'"
     - "--product 'Red Hat Software Collections for RHEL Server' --basearch='x86_64' --releasever='7Server' --name 'Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server'"
 # End Base Repos required for Offline Satellite
-    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - RH Common (RPMs)' --releasever='7Server'"
 
+#additional Common Repos 
+#    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux 7 Server - RH Common (RPMs)' --releasever='7Server'"
 #    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat OpenStack Platform 10 Tools for RHEL 7 Server (RPMs)' --releasever='7Server'"
 #    - "--product 'Red Hat Enterprise Linux Server' --basearch='x86_64' --name 'Red Hat OpenStack Platform 12 Tools for RHEL 7 Server (RPMs)'"
 #    - "--product 'Red Hat Enterprise Linux High Availability for RHEL Server' --basearch='x86_64' --name 'Red Hat Enterprise Linux High Availability (for RHEL 7 Server) (RPMs)' --releasever='7Server'"

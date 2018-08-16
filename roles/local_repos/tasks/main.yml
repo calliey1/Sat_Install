@@ -1,0 +1,3 @@
+---
+- import_tasks: add_local_repos.yml
+  when: not connected

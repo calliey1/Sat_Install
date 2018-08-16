@@ -1,5 +1,0 @@
-[satellite]
-192.168.122.253   ansible_user=cloud-user
-
-[common]
-10.10.10.10       ansible_user=cloud-user

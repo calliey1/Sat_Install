@@ -1,0 +1,10 @@
+---
+- name: Add repository
+  yum_repository:
+    name: "{{ item }}"
+    description: "{{item}}"
+    baseurl: "file://{{root_repo_location}}/{{item}}"
+    enabled: yes
+    gpgcheck: no
+  with_items:
+    - "{{repo_ids}}"

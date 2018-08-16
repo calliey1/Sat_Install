@@ -12,38 +12,19 @@
 #vault_sat_admin_name: "sat_admin"
 #vault_sat_admin_pwd: "homesat123!"
 
-##  Variables used - must update per system
-new_disk: '/dev/vdb'     # set to 2nd disk
-#new_disk: '/dev/sdb'     # set to 2nd disk
+#Connected / Disconnected Variables
+connected: "true"
+root_repo_location: '/mnt/local_repo'
+repo_ids:
+  - rhel-7-server-rpms
+  - rhel-7-server-satellite-maintenance-6-rpms
+  - rhel-server-rhscl-7-rpms
+  - rhel-7-server-satellite-6.3-rpms
 
-# Satellite Variables
-sat_org: My_Organization
-sat_location: My_Location
-activationkey: My_activation
-sat_domain: alliey.local
-subnet_gateway: 192.168.1.1
-subnet_netmask: 255.255.254.0
-subnet_name: "192.168.0.0/23"
-subnet_network:  192.168.0.0
-subnet_dns: 192.168.1.50
-content_view: "Original_ContentView"
-host_collection_name: "RHEL_7_Hosts"
-
-#################################################
-# End section that need to be updated           #
-#################################################
-
-#Standard variables
-## Common Variables
-register_SM: true
-enable_repos: true
-
-
-#two variables used for skip sections for debugging
-config_lvm: true          # must be set to true in order to configure drives
-create: true                     # set to true if creating a new logical volume (do not set extend or resize to true)
 
 ##LVMs, Sizes, Mount Points.
+content_disk: '/dev/vdb'     # set to 2nd disk for local KVM image
+#content_disk: '/dev/sdb'     # set to 2nd disk for RHEV system
 create_vgname: 'content-vg'         # set to volume group name to create
 create_cache_lv: 'pulp-cache-lv'    # set to logical volume pulp-cache-lv to create
 create_pulp_lv: 'pulp-lv'           # set to logical volume pulp-lv to create
@@ -58,3 +39,37 @@ mnt_pulp: '/var/lib/pulp'           # set to the desired mount point mount pulp
 mnt_mongodb: '/var/lib/mongodb'    # set to the desired mount point mount mongodb
 mnt_pgsql: '/var/lib/pgsql'         # set to the desired mount point mount pgsql
 filesystem: 'xfs'                   # set to filesystem type to format new logical volume with ( ext3, ext4, xfs, etc. )
+
+
+# Satellite Variables
+sat_org: My_Organization
+sat_location: My_Location
+activationkey: My_activation
+sat_domain: alliey.local
+subnet_gateway: 192.168.1.1
+subnet_netmask: 255.255.254.0
+subnet_name: "192.168.0.0/23"
+subnet_network:  192.168.0.0
+subnet_dns: 192.168.1.50
+content_view: "Original_ContentView"
+host_collection_name: "RHEL_7_Hosts"
+
+# Satellite Client Variables
+sat_server_ip: "192.168.0.20"
+sat_server: "lab-sat1.alliey.local"
+
+# IDM Variables
+idm_domain: "alliey.local"
+idm_realm: "alliey.local"
+idm_server: "192.168.1.50"
+
+#################################################
+# End section that need to be updated           #
+#################################################
+
+#Standard variables
+## Common Variables
+
+#two variables used for skip sections for debugging
+config_lvm: true          # must be set to true in order to configure drives
+create: true                     # set to true if creating a new logical volume (do not set extend or resize to true)

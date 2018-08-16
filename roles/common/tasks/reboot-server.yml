@@ -1,0 +1,11 @@
+---
+- name: Reboot server
+  shell: sleep 2 && /sbin/shutdown -r now
+  async: 1
+  poll: 0
+
+- name: Waiting for server to reboot
+  wait_for_connection:
+    delay: 10
+    timeout: 300
+...

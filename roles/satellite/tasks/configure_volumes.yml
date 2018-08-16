@@ -6,7 +6,7 @@
 - name: creating new LVM volume group
   lvg:
     vg={{ create_vgname }}
-    pvs={{ new_disk }} state=present
+    pvs={{ content_disk }} state=present
   when: create and config_lvm
 
 - name: creating cache_lv logical volume

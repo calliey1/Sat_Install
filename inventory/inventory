@@ -1,0 +1,25 @@
+[satellite]
+#192.168.122.147     ansible_user=cloud-user
+192.168.122.148    ansible_user=cloud-user
+#192.168.200.245     ansible_user=cloud-user
+#192.168.122.69     ansible_user=cloud-user
+#192.168.1.152     ansible_user=calliey
+#192.168.1.192     ansible_user=calliey
+
+[2satellite]
+#192.168.200.217   ansible_user=cloud-user
+192.168.200.139   ansible_user=cloud-user
+#192.168.122.108   ansible_user=cloud-user
+
+[satellite_clients]
+192.168.1.193     ansible_user=calliey
+#192.168.1.181     ansible_user=calliey
+
+[common]
+192.168.122.172     ansible_user=cloud-user
+#192.168.1.191     ansible_user=calliey
+#192.168.1.192     ansible_user=calliey
+
+[alllab]
+192.168.[0:1].[0:255]
+

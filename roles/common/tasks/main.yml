@@ -1,5 +1,8 @@
 ---
 - import_tasks: update_hosts_file.yml
+#  when: connected
 - import_tasks: enable_standard_repos.yml
+  when: connected
 - import_tasks: install_standard_packages.yml
 - import_tasks: update_system.yml
+- import_tasks: reboot-server.yml
