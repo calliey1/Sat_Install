@@ -1,4 +1,6 @@
 ---
+## items with one "#" are commented out 
+## items with two "#"s are still a work in progress
 - import_tasks: update_system.yml
 - import_tasks: install_standard_packages.yml
 - import_tasks: configure_volumes.yml
@@ -9,8 +11,8 @@
 - import_tasks: configure_downloads.yml
 #- import_tasks: install_openscap.yml
 - import_tasks: enable_repos.yml
-#- import_tasks: gather_satellite_facts.yml
-#- import_tasks: sync_repos.yml
+- import_tasks: gather_satellite_facts.yml
+- import_tasks: sync_repos.yml
 ##  Not complete - import_tasks: create_domain.yml
 #- import_tasks: create_subnets.yml
 #- import_tasks: create_lifecycle.yml
